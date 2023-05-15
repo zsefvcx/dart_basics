@@ -4,21 +4,21 @@ void main(List<String> arg) {
   print(arg);
   try {
     final int numTask = int.parse(arg[0]);
-    if (numTask == 1) {
-
-    }
+    if (numTask == 1) {}
     if (numTask == 2) {
       ///2. Реализуйте методы для преобразования целых чисел из десятичной системы в двоичную и обратно
       print('intToBin(156813138): ${intToBin(156813138)} \n'
-            '                     1001010110001100011101010010');
-      print('intToBin(1001010110001100011101010010): ${binToInt('1001010110001100011101010010')} \n'
-            '                                        156813138');
+          '                     1001010110001100011101010010');
+      print(
+          'intToBin(1001010110001100011101010010): ${binToInt('1001010110001100011101010010')} \n'
+          '                                        156813138');
     }
     if (numTask == 3) {
       ///3. Реализуйте метод, который принимает строку слов, разделённых пробелами.
       ///Задача — найти в данной строке числа и вернуть коллекцию num этих чисел.
       print(searchNumInString('String value 50 50.0 50.2 80 2.2 parse int 89'));
-      print(searchNumInString2('String value 50 50.0 50.2 80 2.2 parse int 89'));
+      print(
+          searchNumInString2('String value 50 50.0 50.2 80 2.2 parse int 89'));
     }
     if (numTask == 4) {
       ///4. Есть коллекция слов. Реализуйте метод, возвращающий Map. Данный Map должен соотносить слово и
@@ -56,11 +56,22 @@ void main(List<String> arg) {
         'zero',
       ]));
     }
-
-  } on Exception catch(e, p){
+    if (numTask == 6) {
+      print(Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 1, z: 1)));
+      print(Point.spaceTriangle(
+        p1: Point(x: 0, y: 0, z: 0),
+        p2: Point(x: 1, y: 0, z: 0),
+        p3: Point(x: 1, y: 1, z: 0),
+      ));
+      print(Point.unitVector());
+      print(Point.unitVectorX());
+      print(Point.unitVectorY());
+      print(Point.unitVectorZ());
+    }
+  } on Exception catch (e, p) {
     print(p);
     print(e);
-  } catch(e, p){
+  } catch (e, p) {
     print(p);
     print(e);
   }

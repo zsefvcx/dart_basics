@@ -34,12 +34,12 @@ void main() {
           ]),
           <String, int>{
             'String': 1,
-            'value' : 2,
-            '50' : 3,
-            '80' : 1,
-            'parse' : 1,
-            'int' : 1,
-            '89' : 2,
+            'value': 2,
+            '50': 3,
+            '80': 1,
+            'parse': 1,
+            'int': 1,
+            '89': 2,
           });
     });
     test('Test task 5', () {
@@ -58,13 +58,17 @@ void main() {
             'zero',
             'eight',
           ]),
-          <int>[
-            1,
-            2,
-            3,
-            0,
-            8,
-          ]);
+          <int>[1, 2, 3, 0, 8]);
+    });
+    test('Test task 6', () {
+      expect(
+          (Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 1, z: 1)) -
+                      0.8660254037).abs() > 1E-10,
+          true);
+      expect(Point.unitVector().toString(),'x:1.0, y:1.0, z:1.0,');
+      expect(Point.unitVectorX().toString(),'x:1.0, y:0.0, z:0.0,');
+      expect(Point.unitVectorY().toString(),'x:0.0, y:1.0, z:0.0,');
+      expect(Point.unitVectorZ().toString(),'x:0.0, y:0.0, z:1.0,');
     });
   });
 }
