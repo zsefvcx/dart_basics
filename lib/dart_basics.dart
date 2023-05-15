@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library;
 
-export 'src/dart_basics_base.dart';
+export 'src/02_procedure_bin_convert.dart';
 
 // TODO: Export any libraries intended for clients of this package.
