@@ -22,21 +22,13 @@ int binToInt(String value) {
   if(check.isEmpty || check.length != 2 || !check.first.contains(RegExp(r'[0-1]'),0) || !check.last.contains(RegExp(r'[0-1]'),0)){
     throw Exception("unsuitable value!");
   }
-
   int result = 0;
-  List<String> valueSplit = value.split('');//..reversed;
-  List<String> valueSplit2 = [];
-  for (int i = valueSplit.length-1; i >= 0; i--){
-    if(valueSplit[i]=='1') {
-      valueSplit2.add('1');
-      result += 1<<(i+1);
+  for (int i = 0; i < value.length; i++){
+    if(value[i]=='1') {
+      result = result ^ (1<<(value.length-i-1));
     } else {
-      valueSplit2.add('0');
     }
   }
-  print(valueSplit);
-  print(valueSplit2.reversed.toList());
-  print(result.toRadixString(2).split(''));
   return result;
 }
 
