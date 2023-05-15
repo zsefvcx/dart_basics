@@ -42,5 +42,29 @@ void main() {
             '89' : 2,
           });
     });
+    test('Test task 5', () {
+      expect(
+          worldIntToInt(<String>[
+            'one',
+            'value',
+            'value',
+            '50',
+            'two',
+            '50',
+            '80',
+            'parse',
+            'three',
+            '89',
+            'zero',
+            'eight',
+          ]),
+          <int>[
+            1,
+            2,
+            3,
+            0,
+            8,
+          ]);
+    });
   });
 }
