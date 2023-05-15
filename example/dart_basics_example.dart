@@ -12,6 +12,11 @@ void main(List<String> arg) {
             '                     1001010110001100011101010010');
       print('intToBin(1001010110001100011101010010): ${binToInt('1001010110001100011101010010')} \n'
             '                                        156813138');
+    } else if (numTask == 3) {
+      ///3. Реализуйте метод, который принимает строку слов, разделённых пробелами.
+      ///Задача — найти в данной строке числа и вернуть коллекцию num этих чисел.
+      print(searchNumInString('String value 50 50.0 50.2 80 2.2 parse int 89'));
+      print(searchNumInString2('String value 50 50.0 50.2 80 2.2 parse int 89'));
     }
 
 
