@@ -17,10 +17,21 @@ void main(List<String> arg) {
       ///Задача — найти в данной строке числа и вернуть коллекцию num этих чисел.
       print(searchNumInString('String value 50 50.0 50.2 80 2.2 parse int 89'));
       print(searchNumInString2('String value 50 50.0 50.2 80 2.2 parse int 89'));
+    } else if (numTask == 4) {
+      print(searchWordCountInList(<String>[
+        'String',
+        'value',
+        'value',
+        '50',
+        '50',
+        '50',
+        '80',
+        'parse',
+        'int',
+        '89',
+        '89',
+      ]));
     }
-
-
-
   } on Exception catch(e, p){
     print(p);
     print(e);
