@@ -70,15 +70,16 @@ void main(List<String> arg) {
       print(Point.unitVectorZ());
     }
     if (numTask == 7) {
-      print('2√1... ${CustomNum.pow(1.rootNExp(2), 2)} ?=? 1.0');
-      print('3√2... ${CustomNum.pow(2.rootNExp(3), 3)} ?=? 2.0');
-      print('5√3... ${CustomNum.pow(3.rootNExp(5), 5)} ?=? 3.0');
-      print('7√4... ${CustomNum.pow(4.rootNExp(7), 7)} ?=? 4.0');
-      print('2√5... ${CustomNum.pow(5.rootNExp(2), 2)} ?=? 5.0');
-      print('2√(-5)... ${CustomNum.pow((-5).rootNExp(2), 2)} ?=? NaN');
-      print('3√(27)... ${CustomNum.pow((27).rootNExp(3, debug: true, debugLevel2: true, itDef: 1000), 3)} ?=? 27');
-      print('3√(-27)... ${CustomNum.pow((-27).rootNExp(3), 3)} ?=? -27');
-      print('3√(27)... ${CustomNum.pow((275555).rootNExp(8, debug: true, debugLevel2: true, itDef: 1000), 3)} ?=? 27');
+      num pow(num x, num exponent) => exponent <=1 ? x : x*pow(x, exponent-1);
+      print('2√1... ${pow(1.rootNExp(2), 2)} ?=? 1.0');
+      print('3√2... ${pow(2.rootNExp(3), 3)} ?=? 2.0');
+      print('5√3... ${pow(3.rootNExp(5), 5)} ?=? 3.0');
+      print('7√4... ${pow(4.rootNExp(7), 7)} ?=? 4.0');
+      print('2√5... ${pow(5.rootNExp(2), 2)} ?=? 5.0');
+      print('2√(-5)... ${pow((-5).rootNExp(2), 2)} ?=? NaN');
+      print('3√(27)... ${pow((27).rootNExp(3), 3)} ?=? 27');
+      print('3√(-27)... ${pow((-27).rootNExp(3), 3)} ?=? -27');
+      print('8√(275555)... ${pow((275555).rootNExp(8), 8)} ?=? 275555');
     }
   } on Exception catch (e, p) {
     print('${StackTrace.current}');

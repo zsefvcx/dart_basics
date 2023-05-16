@@ -105,6 +105,7 @@ void main() {
       expect((27).rootNExp(2), 5.196152422706632);
       expect((27).rootNExp(3), 3);
       expect((-27).rootNExp(3), -3);
+      expect((275555).rootNExp(8), 4.786587881808159);
     });
   });
 }
