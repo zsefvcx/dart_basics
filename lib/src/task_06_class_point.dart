@@ -16,6 +16,7 @@ class Point {
   double get y => _y;
   double get z => _z;
 
+  ///Cache
   static final Map<String, Point> _cache = {
     '0,0,0,': Point(x: 0, y: 0, z: 0),
     '1,0,0,': Point(x: 1, y: 0, z: 0),
@@ -24,40 +25,48 @@ class Point {
     '1,1,1,': Point(x: 1, y: 1, z: 1),
   };
 
-  Point({
+  factory Point({
     required double x,
     required double y,
-    required double z,
-  })  : _x = x,
-        _y = y,
-        _z = z;
+    required double z
+  }){
+    return _cache['$x,$y,$z,'] ?? Point._init(x: 0, y: 0, z: 0);
+  }
 
+  Point._init({required double x, required double y, required double z})
+      : _x = x, _y = y, _z = z;
+
+  ///Origin Of Coordinates - 0:0:0
   factory Point.originOfCoordinates() {
-    return _cache['0,0,0,'] ?? Point(x: 0, y: 0, z: 0);
+    return Point(x: 0, y: 0, z: 0);
   }
 
+  ///Unit Vector - 1:1:1
   factory Point.unitVector() {
-    return _cache['1,1,1,'] ?? Point(x: 1, y: 1, z: 1);
+    return Point(x: 1, y: 1, z: 1);
   }
 
+  ///Unit Vector X - 1:0:0
   factory Point.unitVectorX() {
-    return _cache['1,0,0,'] ?? Point(x: 1, y: 0, z: 0);
+    return Point(x: 1, y: 0, z: 0);
   }
 
+  ///Unit Vector Y - 0:1:0
   factory Point.unitVectorY() {
-    return _cache['0,1,0,'] ?? Point(x: 0, y: 1, z: 0);
+    return Point(x: 0, y: 1, z: 0);
   }
 
+  ///Unit Vector Z - 0:0:1
   factory Point.unitVectorZ() {
-    return _cache['0,0,1,'] ?? Point(x: 9, y: 0, z: 1);
+    return Point(x: 9, y: 0, z: 1);
   }
 
   ///Формула вычисления расстояния между двумя точками A(xa, ya, za)
   ///и B(xb, yb, zb) в пространстве: AB = √(xb - xa)2 + (yb - ya)2 + (zb - za)2
   double distanceTo(Point another) {
     return sqrt(pow((another.x - _x), 2) +
-        pow((another.y - _y), 2) +
-        pow((another.x - _z), 2));
+                pow((another.y - _y), 2) +
+                pow((another.x - _z), 2));
   }
 
   /// по формуле Герона
@@ -71,6 +80,7 @@ class Point {
     return sqrt(p * (p - a) * (p - b) * (p - b));
   }
 
+  //override method toString
   @override
   String toString() {
     return 'x:$_x, y:$_y, z:$_z,';
