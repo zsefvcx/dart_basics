@@ -21,7 +21,7 @@ void main() {
     });
     test('Test task 4', () {
       expect(
-          searchWordCountInList(<String>[
+          SearchWordCountInList(value: <String>[
             'String',
             'value',
             'value',
@@ -33,7 +33,7 @@ void main() {
             'int',
             '89',
             '89',
-          ]),
+          ]).result,
           <String, int>{
             'String': 1,
             'value': 2,

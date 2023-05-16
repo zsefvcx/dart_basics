@@ -24,7 +24,7 @@ void main(List<String> arg) {
     if (numTask == 4) {
       ///4. Есть коллекция слов. Реализуйте метод, возвращающий Map. Данный Map должен соотносить слово и
       /// количество его вхождений в данную коллекцию.
-      print(searchWordCountInList(<String>[
+      print(SearchWordCountInList(value: <String>[
         'String',
         'value',
         'value',
