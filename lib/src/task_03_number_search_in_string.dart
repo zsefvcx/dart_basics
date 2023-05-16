@@ -19,7 +19,7 @@ Set<num> searchNumInString(String value){
 Set<num> searchNumInString2(String value){
   Set <num> result = {};
   for(var elem in value.split(' ')){
-    double? parseDouble = double.tryParse(elem);//double поглощает int если что...
+    double? parseDouble = double.tryParse(elem);
     if(parseDouble != null){
       result.add(parseDouble);
     }

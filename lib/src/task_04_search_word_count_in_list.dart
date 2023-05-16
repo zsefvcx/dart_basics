@@ -11,6 +11,5 @@ Map<String, int> searchWordCountInList(List<String> value){
       result[elem] = result[elem]! + 1;
     }
   }
-
   return result;
 }
