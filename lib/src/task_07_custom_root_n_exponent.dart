@@ -1,6 +1,4 @@
 
-import 'dart:async';
-
 ///7 Реализуйте метод, который вычисляет корень любой заданной степени из числа.
 ///Реализуйте данный метод как extension-метод для num. Алгоритм можете взять на
 ///википедии как «Алгоритм нахождения корня n-й степени». Запрещается
@@ -22,7 +20,8 @@ extension CustomNum on num {
   /// itDef - number iteration. default = 1E10
   /// debug - this is DEBUG
   /// debugLevel2 - this is DEBUG Level2
-  double rootNExp(num exponent, {num dN = 1E-10, num itDef = 1E10, bool debug = false, bool debugLevel2 = false}){
+  /// timeout - time out. default 5000 mks
+  double rootNExp(num exponent, {num timeout = 5000, num dN = 1E-10, num itDef = 1E10, bool debug = false, bool debugLevel2 = false}) {
     if(debug) print('Start: this:$this n:$exponent dN:$dN itDef:$itDef');
     if(this==0 || exponent == 1 || this == 1) return toDouble();
     if(exponent == 0) return 1;
@@ -39,35 +38,32 @@ extension CustomNum on num {
 
     int it = 0;
     double buffer = 0;
-    bool timeout = false;
-    Timer timer = Timer(const Duration(microseconds: 1, milliseconds: 0,), (){
-      timeout= true;
-    });
+
+    DateTime clockStart = DateTime.now();
 
     do {
       buffer = current;
       current = abs()/(exponent*pow(current, exponent-1)) + (current*(exponent-1)/exponent);
 
-      if(debugLevel2)print('Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current} timeout:$timeout TimerTick:${timer.tick}');
+      if(debugLevel2)print('Current: dN: ${(current - buffer).abs()} it:$it timeout:$timeout result: ${this<0?-current:current}');
 
       if (it++>= itDef){
         throw Exception(
            'Calculation error. Accuracy $dN not reached after $itDef iterations.'
-                'Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current} timeout:$timeout  TimerTick:${timer.tick}'
+                'Exception: dN: ${(current - buffer).abs()} it:$it timeout:$timeout result: ${this<0?-current:current}'
        );
       }
-      if (timeout){
-        timer.cancel();
+
+      if  (DateTime.now().difference(clockStart).inMilliseconds > timeout){
         throw Exception(
             'TimeOut error. Calculation takes too long.'
-                'Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current} timeout:$timeout  TimerTick:${timer.tick}'
+                'Exception: dN: ${(current - buffer).abs()} it:$it timeout:$timeout result: ${this<0?-current:current}'
         );
       }
 
     } while((current - buffer).abs() > dN);
-    timer.cancel();
 
-    if(debug)print('Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current}');
+    if(debug)print('Final: dN: ${(current - buffer).abs()} it:$it timeout:$timeout result: ${this<0?-current:current}');
 
     return this<0?-current:current;
   }
