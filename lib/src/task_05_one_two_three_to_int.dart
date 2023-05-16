@@ -8,30 +8,29 @@
 
 class WordIntToInt {
   static const List<String> _intWord = [
-    'zero',
-    'one',
-    'two',
-    'three',
-    'four',
-    'five',
-    'six',
-    'seven',
-    'eight',
-    'nine',
-    'eight',
+    'zero', 'one',   'two', 'three', 'four',
+    'five', 'six', 'seven', 'eight', 'nine','eight',
   ];
   final List<String> _value;
+  final List<int> _result = [];
 
-  WordIntToInt({required List<String> value}) : _value = value;
+  List<int> get result => _result;
 
-  List<int> convert() {
-    List<int> result = [];
+  WordIntToInt({required List<String> value}) : _value = value{
+    _convert();
+  }
+
+  void _convert() {
     for (var elem in _value) {
       if (_intWord.contains(elem.toLowerCase())) {
-        result.add(_intWord.indexOf(elem.toLowerCase(), 0));
+        _result.add(_intWord.indexOf(elem.toLowerCase(), 0));
       }
     }
-    return result;
+  }
+
+  @override
+  String toString() {
+    return _result.toString();
   }
 }
 

@@ -59,7 +59,7 @@ void main() {
             '89',
             'zero',
             'eight',
-          ]).convert(),
+          ]).result,
           <int>[1, 2, 3, 0, 8]);
     });
     test('Test task 6', () {

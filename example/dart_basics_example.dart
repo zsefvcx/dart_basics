@@ -55,7 +55,7 @@ void main(List<String> arg) {
         'three',
         '89',
         'zero',
-      ]).convert());
+      ]));
     }
     if (numTask == 6) {
       print(Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 1, z: 1)));
