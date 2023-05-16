@@ -8,44 +8,51 @@
 extension CustomNum on num {
 
   ///for test
-  static double pow(num x, num n){
-    if(n <=1) {
-      return x.toDouble();
+  static num pow(num x, num exponent){
+    if(exponent <=1) {
+      return x;
     } else {
-      return x*pow(x, n-1);
+      return x*pow(x, exponent-1);
     }
   }
   /// n - any numbers
   /// dN - calculation accuracy. default = 1E-10
   /// itDef - number iteration. default = 1E10
-  double rootNExp(num n, [num dN = 1E-10, num itDef = 1E10]){
-    if(this==0 || n == 1 || this == 1) return toDouble();
-    if(n == 0) return 1;
-    if(n%2==0 && this < 0){
-      throw Exception(
-          'No solution. For an even degree of the root of a negative number, '
-              'the solution lies in the imaginary region.'
-      );
+  /// debug - this is DEBUG
+  /// debugLevel2 - this is DEBUG Level2
+  double rootNExp(num exponent, {num dN = 1E-10, num itDef = 1E10, bool debug = false, bool debugLevel2 = false}){
+    if(debug) print('Start: this:$this n:$exponent dN:$dN itDef:$itDef');
+    if(this==0 || exponent == 1 || this == 1) return toDouble();
+    if(exponent == 0) return 1;
+    if(exponent%2==0 && this < 0){
+      return double.nan;
+      // throw Exception(
+      //     'No solution. For an even degree of the root of a negative number, '
+      //         'the solution lies in the imaginary region.'
+      // );
     }
 
-    double current  = abs().toDouble()/100;
-           //current += abs()/pow(current, n-1);
-           // время дольше 10 секунд выход из цикла
+    double current  = (abs().toDouble()*(exponent-1))/exponent;
+           current += abs()/pow(current, exponent-1);
 
     int it = 0;
     double buffer = 0;
-    do{
+    do {
       buffer = current;
-      current = (abs()/pow(current, n-1) + current)/n;
-      it++;
-      if (it>= itDef){
+      current = abs()/(exponent*pow(current, exponent-1)) + (current*(exponent-1)/exponent);
+
+      if(debugLevel2)print('Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current}');
+
+      if (it++>= itDef){
         throw Exception(
            'Calculation error. Accuracy $dN not reached after $itDef iterations.'
-                'Current dN: ${(current - buffer).abs()} it:$it result: $current'
+                'Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current}'
        );
       }
     } while((current - buffer).abs() > dN);
-    print('Current dN: ${(current - buffer).abs()} it:$it result: $current' );
+
+    if(debug)print('Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current}');
+
     return this<0?-current:current;
   }
 

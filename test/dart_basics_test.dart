@@ -100,10 +100,11 @@ void main() {
       expect(Point.unitVectorZ().toString(),'x:0.0, y:0.0, z:1.0,');
     });
     test('Test task 7', () {
-      //expect((4).rootNExp(2), 2);
-      //expect((9).rootNExp(2), 3);
-      //expect((27).rootNExp(3), 3);
-      //expect((-27).rootNExp(3), -3);
+      expect(( 4).rootNExp(2), 2);
+      expect(( 9).rootNExp(2), 3);
+      expect((27).rootNExp(2), 5.196152422706632);
+      expect((27).rootNExp(3), 3);
+      expect((-27).rootNExp(3), -3);
     });
   });
 }
