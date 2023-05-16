@@ -61,7 +61,7 @@ void main(List<String> arg) {
       print(Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 1, z: 1)));
       print(Point.spaceTriangle(
         p1: Point(x: 0, y: 0, z: 0),
-        p2: Point(x: 1, y: 0, z: 0),
+        p2: Point(x: 1, y: 0, z: 1),
         p3: Point(x: 1, y: 1, z: 0),
       ));
       print(Point.unitVector());
@@ -70,13 +70,26 @@ void main(List<String> arg) {
       print(Point.unitVectorZ());
     }
     if (numTask == 7) {
-      num index = 4;
-      print(index.rootNExp(2));
+      print('2√1 ${CustomNum.pow(1.rootNExp(2), 2)} ?=? 1.0');
+      print('3√2 ${CustomNum.pow(2.rootNExp(3), 3)} ?=? 2.0');
+      print('5√3 ${CustomNum.pow(3.rootNExp(5), 5)} ?=? 3.0');
+      print('7√4 ${CustomNum.pow(4.rootNExp(7), 7)} ?=? 4.0');
+      print('2√5 ${CustomNum.pow(5.rootNExp(2), 2)} ?=? 5.0');
+      try {
+        print('2√(-5) ${CustomNum.pow((-5).rootNExp(2), 2)} ?=? ---');
+      } on Exception catch(e, p){
+        print('${StackTrace.current}');
+        print(p);
+        print(e);
+      }
+      print('3√(-6) ${CustomNum.pow((-6).rootNExp(3), 3)} ?=? ---');
     }
   } on Exception catch (e, p) {
+    print('${StackTrace.current}');
     print(p);
     print(e);
   } catch (e, p) {
+    print('${StackTrace.current}');
     print(p);
     print(e);
   }

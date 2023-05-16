@@ -7,40 +7,46 @@
 
 extension CustomNum on num {
 
+  ///for test
+  static double pow(num x, num n){
+    if(n <=1) {
+      return x.toDouble();
+    } else {
+      return x*pow(x, n-1);
+    }
+  }
   /// n - any numbers
   /// dN - calculation accuracy. default = 1E-10
   /// itDef - number iteration. default = 1E10
-  double rootNExp(num n, [double dN = 1E-10, int itDef = 1000000]){
-    double result = 0;
-    double current = 2;
-
-    double pow(num x, num n){
-      if(n <=0) {
-        return x.toDouble();
-      } else {
-        return x*pow(x, n-1);
-      }
+  double rootNExp(num n, [num dN = 1E-10, num itDef = 1E10]){
+    if(this==0 || n == 1 || this == 1) return toDouble();
+    if(n == 0) return 1;
+    if(n%2==0 && this < 0){
+      throw Exception(
+          'No solution. For an even degree of the root of a negative number, '
+              'the solution lies in the imaginary region.'
+      );
     }
 
-    // время дольше 10 секунд
+    double current  = abs().toDouble()/100;
+           //current += abs()/pow(current, n-1);
+           // время дольше 10 секунд выход из цикла
+
     int it = 0;
-    print(this);
+    double buffer = 0;
     do{
-      result = current;
-      current = (((n-1)*result/n) + this/pow(result, n))/n;
-
-      //it++;
-      //if (it>= itDef){
-      //  throw Exception(
-      //     'Calculation error. Accuracy $dN not reached after $itDef iterations.'
-      //          'Current dN: ${(current - result).abs()} it:$it result: $current'
-      // );
-      //}
-      print('Current dN: ${(current - result).abs()} it:$it result: $current' );
-    } while((current - result).abs() > dN);
-
-    return current;
-    // тут вызывваем исключение
+      buffer = current;
+      current = (abs()/pow(current, n-1) + current)/n;
+      it++;
+      if (it>= itDef){
+        throw Exception(
+           'Calculation error. Accuracy $dN not reached after $itDef iterations.'
+                'Current dN: ${(current - buffer).abs()} it:$it result: $current'
+       );
+      }
+    } while((current - buffer).abs() > dN);
+    print('Current dN: ${(current - buffer).abs()} it:$it result: $current' );
+    return this<0?-current:current;
   }
 
 

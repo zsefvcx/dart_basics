@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dart_basics/dart_basics.dart';
 import 'package:test/test.dart';
 
@@ -63,12 +65,45 @@ void main() {
     test('Test task 6', () {
       expect(
           (Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 1, z: 1)) -
-                      0.8660254037).abs() > 1E-10,
+              1.7320508075688772).abs() < 1E-10,
           true);
+      expect(
+          (Point(x: 1, y: 1, z: 1).distanceTo(Point(x: 2, y: 2, z: 2)) -
+              1.7320508075688772).abs() < 1E-10,
+          true);
+      expect(
+          (Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 2, y: 2, z: 2)) -
+              3.4641016151377544).abs() < 1E-10,
+          true);
+      expect(
+          (Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 2, z: 3)) -
+              3.7416573867739413).abs() < 1E-10,
+          true);
+      expect(
+          (Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 0, z: 1)) -
+              1.4142135623730951).abs() < 1E-10,
+          true);
+      expect(
+          (Point(x: 5, y: 8, z: 20).distanceTo(Point(x: 1, y: 8, z: -10)) -
+              30.265491900843113).abs() < 1E-10,
+          true);
+      expect(
+           (Point.spaceTriangle(
+             p1: Point(x: 0, y: 0, z: 0),
+             p2: Point(x: 1, y: 0, z: 1),
+             p3: Point(x: 1, y: 1, z: 0),
+           ) - 0.8660254037844386).abs() < 1E-10,
+           true);
       expect(Point.unitVector().toString(),'x:1.0, y:1.0, z:1.0,');
       expect(Point.unitVectorX().toString(),'x:1.0, y:0.0, z:0.0,');
       expect(Point.unitVectorY().toString(),'x:0.0, y:1.0, z:0.0,');
       expect(Point.unitVectorZ().toString(),'x:0.0, y:0.0, z:1.0,');
+    });
+    test('Test task 7', () {
+      //expect((4).rootNExp(2), 2);
+      //expect((9).rootNExp(2), 3);
+      //expect((27).rootNExp(3), 3);
+      //expect((-27).rootNExp(3), -3);
     });
   });
 }

@@ -18,11 +18,11 @@ class Point {
 
   ///Cache
   static final Map<String, Point> _cache = {
-    '0,0,0,': Point(x: 0, y: 0, z: 0),
-    '1,0,0,': Point(x: 1, y: 0, z: 0),
-    '0,1,0,': Point(x: 0, y: 1, z: 0),
-    '0,0,1,': Point(x: 0, y: 0, z: 1),
-    '1,1,1,': Point(x: 1, y: 1, z: 1),
+    '0,0,0,': Point._init(x: 0, y: 0, z: 0),
+    '1,0,0,': Point._init(x: 1, y: 0, z: 0),
+    '0,1,0,': Point._init(x: 0, y: 1, z: 0),
+    '0,0,1,': Point._init(x: 0, y: 0, z: 1),
+    '1,1,1,': Point._init(x: 1, y: 1, z: 1),
   };
 
   factory Point({
@@ -30,7 +30,7 @@ class Point {
     required double y,
     required double z
   }){
-    return _cache['$x,$y,$z,'] ?? Point._init(x: 0, y: 0, z: 0);
+    return _cache['$x,$y,$z,'] ?? Point._init(x: x, y: y, z: z);
   }
 
   Point._init({required double x, required double y, required double z})
@@ -58,15 +58,15 @@ class Point {
 
   ///Unit Vector Z - 0:0:1
   factory Point.unitVectorZ() {
-    return Point(x: 9, y: 0, z: 1);
+    return Point(x: 0, y: 0, z: 1);
   }
 
   ///Формула вычисления расстояния между двумя точками A(xa, ya, za)
   ///и B(xb, yb, zb) в пространстве: AB = √(xb - xa)2 + (yb - ya)2 + (zb - za)2
   double distanceTo(Point another) {
-    return sqrt(pow((another.x - _x), 2) +
-                pow((another.y - _y), 2) +
-                pow((another.x - _z), 2));
+    return sqrt(pow((another.x-_x),2) +
+                pow((another.y-_y),2) +
+                pow((another.z-_z),2));
   }
 
   /// по формуле Герона
@@ -77,7 +77,7 @@ class Point {
     double b = p2.distanceTo(p3);
     double c = p3.distanceTo(p1);
     double p = 0.5 * (a + b + c);
-    return sqrt(p * (p - a) * (p - b) * (p - b));
+    return sqrt(p * (p - a) * (p - b) * (p - c));
   }
 
   //override method toString
