@@ -6,26 +6,38 @@
 ///получим следующий результат: [1, 2, 0]. Если в строке есть слова, не
 ///являющиеся цифрами от 0 до 9, пропускайте их.
 
-List<String> _intWord = [
-  'zero',
-  'one',
-  'two',
-  'three',
-  'four',
-  'five',
-  'six',
-  'seven',
-  'eight',
-  'nine',
-  'eight',
-];
+class WordIntToInt {
+  static const List<String> _intWord = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'eight',
+  ];
+  final List<String> _value;
 
-List<int> worldIntToInt(List<String> value){
-  List<int> result = [];
-  for(var elem in value){
-    if(_intWord.contains(elem.toLowerCase())) {
-      result.add(_intWord.indexOf(elem.toLowerCase(), 0));
+  WordIntToInt({required List<String> value}) : _value = value;
+
+  List<int> convert() {
+    List<int> result = [];
+    for (var elem in _value) {
+      if (_intWord.contains(elem.toLowerCase())) {
+        result.add(_intWord.indexOf(elem.toLowerCase(), 0));
+      }
     }
+    return result;
   }
-  return result;
 }
+
+
+
+
+
+
+

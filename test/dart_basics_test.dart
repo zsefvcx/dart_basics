@@ -46,7 +46,7 @@ void main() {
     });
     test('Test task 5', () {
       expect(
-          worldIntToInt(<String>[
+          WordIntToInt(value: <String>[
             'one',
             'value',
             'value',
@@ -59,7 +59,7 @@ void main() {
             '89',
             'zero',
             'eight',
-          ]),
+          ]).convert(),
           <int>[1, 2, 3, 0, 8]);
     });
     test('Test task 6', () {

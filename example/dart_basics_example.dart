@@ -43,7 +43,7 @@ void main(List<String> arg) {
       ///возвращающий цифры без повторений, которые встречаются в данной строке. Однако цифры встречаются в виде
       ///английских слов от zero до nine. Например, в результате строки ‘one, two, zero, zero’ мы получим следующий
       ///результат: [1, 2, 0]. Если в строке есть слова, не являющиеся цифрами от 0 до 9, пропускайте их.
-      print(worldIntToInt(<String>[
+      print(WordIntToInt(value: <String>[
         'one',
         'value',
         'value',
@@ -55,7 +55,7 @@ void main(List<String> arg) {
         'three',
         '89',
         'zero',
-      ]));
+      ]).convert());
     }
     if (numTask == 6) {
       print(Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 1, z: 1)));
