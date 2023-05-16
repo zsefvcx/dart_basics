@@ -1,3 +1,4 @@
+
 import 'package:dart_basics/dart_basics.dart';
 
 void main(List<String> arg) {
@@ -67,6 +68,10 @@ void main(List<String> arg) {
       print(Point.unitVectorX());
       print(Point.unitVectorY());
       print(Point.unitVectorZ());
+    }
+    if (numTask == 7) {
+      num index = 4;
+      print(index.rootNExp(2));
     }
   } on Exception catch (e, p) {
     print(p);
