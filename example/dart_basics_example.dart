@@ -78,6 +78,7 @@ void main(List<String> arg) {
       print('2√(-5)... ${CustomNum.pow((-5).rootNExp(2), 2)} ?=? NaN');
       print('3√(27)... ${CustomNum.pow((27).rootNExp(3, debug: true, debugLevel2: true, itDef: 1000), 3)} ?=? 27');
       print('3√(-27)... ${CustomNum.pow((-27).rootNExp(3), 3)} ?=? -27');
+      print('3√(27)... ${CustomNum.pow((275555).rootNExp(8, debug: true, debugLevel2: true, itDef: 1000), 3)} ?=? 27');
     }
   } on Exception catch (e, p) {
     print('${StackTrace.current}');

@@ -1,9 +1,11 @@
 
+import 'dart:async';
+
 ///7 Реализуйте метод, который вычисляет корень любой заданной степени из числа.
 ///Реализуйте данный метод как extension-метод для num. Алгоритм можете взять на
-///википедии как «Алгоритм нахождения корня n-й степени». Запрещается использовать
-///методы math. В случае когда значение вернуть невозможно, необходимо бросать
-///исключение с описанием ошибки.
+///википедии как «Алгоритм нахождения корня n-й степени». Запрещается
+///использовать методы math. В случае когда значение вернуть невозможно,
+///необходимо бросать исключение с описанием ошибки.
 
 extension CustomNum on num {
 
@@ -37,19 +39,33 @@ extension CustomNum on num {
 
     int it = 0;
     double buffer = 0;
+    bool timeout = false;
+    Timer timer = Timer(const Duration(microseconds: 1, milliseconds: 0,), (){
+      timeout= true;
+    });
+
     do {
       buffer = current;
       current = abs()/(exponent*pow(current, exponent-1)) + (current*(exponent-1)/exponent);
 
-      if(debugLevel2)print('Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current}');
+      if(debugLevel2)print('Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current} timeout:$timeout TimerTick:${timer.tick}');
 
       if (it++>= itDef){
         throw Exception(
            'Calculation error. Accuracy $dN not reached after $itDef iterations.'
-                'Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current}'
+                'Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current} timeout:$timeout  TimerTick:${timer.tick}'
        );
       }
+      if (timeout){
+        timer.cancel();
+        throw Exception(
+            'TimeOut error. Calculation takes too long.'
+                'Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current} timeout:$timeout  TimerTick:${timer.tick}'
+        );
+      }
+
     } while((current - buffer).abs() > dN);
+    timer.cancel();
 
     if(debug)print('Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current}');
 
