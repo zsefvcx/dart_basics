@@ -1,46 +1,75 @@
 
+import 'dart:async';
+
 ///7 Реализуйте метод, который вычисляет корень любой заданной степени из числа.
 ///Реализуйте данный метод как extension-метод для num. Алгоритм можете взять на
-///википедии как «Алгоритм нахождения корня n-й степени». Запрещается использовать
-///методы math. В случае когда значение вернуть невозможно, необходимо бросать
-///исключение с описанием ошибки.
+///википедии как «Алгоритм нахождения корня n-й степени». Запрещается
+///использовать методы math. В случае когда значение вернуть невозможно,
+///необходимо бросать исключение с описанием ошибки.
 
 extension CustomNum on num {
 
+  ///for test
+  static num pow(num x, num exponent){
+    if(exponent <=1) {
+      return x;
+    } else {
+      return x*pow(x, exponent-1);
+    }
+  }
   /// n - any numbers
   /// dN - calculation accuracy. default = 1E-10
   /// itDef - number iteration. default = 1E10
-  double rootNExp(num n, [double dN = 1E-10, int itDef = 1000000]){
-    double result = 0;
-    double current = 2;
-
-    double pow(num x, num n){
-      if(n <=0) {
-        return x.toDouble();
-      } else {
-        return x*pow(x, n-1);
-      }
+  /// debug - this is DEBUG
+  /// debugLevel2 - this is DEBUG Level2
+  double rootNExp(num exponent, {num dN = 1E-10, num itDef = 1E10, bool debug = false, bool debugLevel2 = false}){
+    if(debug) print('Start: this:$this n:$exponent dN:$dN itDef:$itDef');
+    if(this==0 || exponent == 1 || this == 1) return toDouble();
+    if(exponent == 0) return 1;
+    if(exponent%2==0 && this < 0){
+      return double.nan;
+      // throw Exception(
+      //     'No solution. For an even degree of the root of a negative number, '
+      //         'the solution lies in the imaginary region.'
+      // );
     }
 
-    // время дольше 10 секунд
+    double current  = (abs().toDouble()*(exponent-1))/exponent;
+           current += abs()/pow(current, exponent-1);
+
     int it = 0;
-    print(this);
-    do{
-      result = current;
-      current = (((n-1)*result/n) + this/pow(result, n))/n;
+    double buffer = 0;
+    bool timeout = false;
+    Timer timer = Timer(const Duration(microseconds: 1, milliseconds: 0,), (){
+      timeout= true;
+    });
 
-      //it++;
-      //if (it>= itDef){
-      //  throw Exception(
-      //     'Calculation error. Accuracy $dN not reached after $itDef iterations.'
-      //          'Current dN: ${(current - result).abs()} it:$it result: $current'
-      // );
-      //}
-      print('Current dN: ${(current - result).abs()} it:$it result: $current' );
-    } while((current - result).abs() > dN);
+    do {
+      buffer = current;
+      current = abs()/(exponent*pow(current, exponent-1)) + (current*(exponent-1)/exponent);
 
-    return current;
-    // тут вызывваем исключение
+      if(debugLevel2)print('Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current} timeout:$timeout TimerTick:${timer.tick}');
+
+      if (it++>= itDef){
+        throw Exception(
+           'Calculation error. Accuracy $dN not reached after $itDef iterations.'
+                'Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current} timeout:$timeout  TimerTick:${timer.tick}'
+       );
+      }
+      if (timeout){
+        timer.cancel();
+        throw Exception(
+            'TimeOut error. Calculation takes too long.'
+                'Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current} timeout:$timeout  TimerTick:${timer.tick}'
+        );
+      }
+
+    } while((current - buffer).abs() > dN);
+    timer.cancel();
+
+    if(debug)print('Current dN: ${(current - buffer).abs()} it:$it result: ${this<0?-current:current}');
+
+    return this<0?-current:current;
   }
 
 
