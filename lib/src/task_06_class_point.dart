@@ -1,4 +1,3 @@
-import 'dart:math';
 
 ///6. Реализуйте класс Point, который описывает точку в трёхмерном пространстве.
 ///У данного класса реализуйте метод distanceTo(Point another), который
@@ -62,13 +61,30 @@ class Point {
   factory Point.unitVectorZ() {
     return Point(x: 0, y: 0, z: 1);
   }
+  //можно из бибилиотеки math взять pow
+  static num _pow(num x, num exponent) => exponent <=1 ? x : x*_pow(x, exponent-1);
+  //можно из бибилиотеки math взять sqrt
+  static double _sqrt (num x){
+    double l = 0, r = x.toDouble();
+    double m = (l + r) /2;
+    while(r - l > 1){
+      if(m * m <= x){
+        l = m;
+      }
+      else{
+        r = m;
+      }
+      m = (l + r)/2;
+    }
+    return m;
+  }
 
   ///Формула вычисления расстояния между двумя точками A(xa, ya, za)
   ///и B(xb, yb, zb) в пространстве: AB = √(xb - xa)2 + (yb - ya)2 + (zb - za)2
   double distanceTo(Point another) {
-    return sqrt(pow((another.x-_x),2) +
-                pow((another.y-_y),2) +
-                pow((another.z-_z),2));
+    return _sqrt(_pow((another.x-_x),2) +
+                _pow((another.y-_y),2) +
+                _pow((another.z-_z),2));
   }
 
   /// по формуле Герона
@@ -79,7 +95,7 @@ class Point {
     double b = p2.distanceTo(p3);
     double c = p3.distanceTo(p1);
     double p = 0.5 * (a + b + c);
-    return sqrt(p * (p - a) * (p - b) * (p - c));
+    return _sqrt((p * (p - a) * (p - b) * (p - c)));
   }
 
   //override method toString

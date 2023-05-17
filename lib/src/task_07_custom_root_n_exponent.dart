@@ -24,7 +24,11 @@ extension CustomNum on num {
     if(this==0 || exponent == 1 || this == 1) return toDouble();
     if(exponent == 0) return 1;
     if(exponent%2==0 && this < 0){
-      return double.nan;
+      //return double.nan;
+      throw Exception(
+           'No solution. For an even degree of the root of a negative number, '
+               'the solution lies in the imaginary region.'
+      );
     }
     num pow(num x, num exponent) => exponent <=1 ? x : x*pow(x, exponent-1);
     double current  = (abs().toDouble()*(exponent-1))/exponent;

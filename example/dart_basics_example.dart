@@ -4,6 +4,7 @@ import 'package:dart_basics/dart_basics.dart';
 void main(List<String> arg) {
   print(arg);
   try {
+    ///При выполнении мы запускаем только то задание ктоторое нам надо протестировать.
     final int numTask = int.parse(arg[0]);
     if (numTask == 1) {}
     if (numTask == 2) {
@@ -76,7 +77,15 @@ void main(List<String> arg) {
       print('5√3... ${pow(3.rootNExp(5), 5)} ?=? 3.0');
       print('7√4... ${pow(4.rootNExp(7), 7)} ?=? 4.0');
       print('2√5... ${pow(5.rootNExp(2), 2)} ?=? 5.0');
-      print('2√(-5)... ${pow((-5).rootNExp(2), 2)} ?=? NaN');
+      try {
+        print('2√(-5)... ${pow((-5).rootNExp(2), 2)} ?=? NaN');
+      } on Exception catch (e, p) {
+        print('${StackTrace.current}');
+        print(p);
+        print(e);
+      } catch (_) {
+        rethrow;
+      }
       print('3√(27)... ${pow((27).rootNExp(3), 3)} ?=? 27');
       print('3√(-27)... ${pow((-27).rootNExp(3), 3)} ?=? -27');
       print('8√(275555)... ${pow((275555).rootNExp(8), 8)} ?=? 275555');

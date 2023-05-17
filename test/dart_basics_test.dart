@@ -1,10 +1,25 @@
-import 'dart:async';
+
+import 'package:test/test.dart';
 
 import 'package:dart_basics/dart_basics.dart';
-import 'package:test/test.dart';
+
 
 void main() {
   group('A group of tests', () {
+    test('Test task 1', () {
+      expect(DelimetersCalculator(value: 15).gcd(20) ,5);
+      expect(DelimetersCalculator(value: 15).gcd(20) ,5);
+      expect(DelimetersCalculator(value: 15).gcd(35) ,5);
+      expect(DelimetersCalculator(value: 12).gcd(30) ,6);
+      expect(DelimetersCalculator(value: 72).gcd(64) ,8);
+
+      expect(DelimetersCalculator(value: 15).lcm(89) ,1335);
+      expect(DelimetersCalculator(value: 15).lcm(20) ,60);
+      expect(DelimetersCalculator(value: 15).lcm(35) ,105);
+      expect(DelimetersCalculator(value: 12).lcm(30) ,60);
+      expect(DelimetersCalculator(value: 72).lcm(64) ,576);
+
+    });
     test('Test task 2', () {
       expect(intToBin(156813138), '1001010110001100011101010010');
       expect(binToInt('1001010110001100011101010010'), 156813138);
