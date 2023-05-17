@@ -6,7 +6,11 @@ void main(List<String> arg) {
   try {
     ///При выполнении мы запускаем только то задание ктоторое нам надо протестировать.
     final int numTask = int.parse(arg[0]);
-    if (numTask == 1) {}
+    if (numTask == 1) {
+      print(DelimetersCalculator(value: 15).gcd(20));
+      print(DelimetersCalculator(value: 15).lcm(20));
+      print(DelimetersCalculator(value: 124).fin());
+    }
     if (numTask == 2) {
       ///2. Реализуйте методы для преобразования целых чисел из десятичной системы в двоичную и обратно
       print('intToBin(156813138): ${intToBin(156813138)} \n'
@@ -16,15 +20,11 @@ void main(List<String> arg) {
           '                                        156813138');
     }
     if (numTask == 3) {
-      ///3. Реализуйте метод, который принимает строку слов, разделённых пробелами.
-      ///Задача — найти в данной строке числа и вернуть коллекцию num этих чисел.
       print(searchNumInString('String value 50 50.0 50.2 80 2.2 parse int 89'));
       print(
           searchNumInString2('String value 50 50.0 50.2 80 2.2 parse int 89'));
     }
     if (numTask == 4) {
-      ///4. Есть коллекция слов. Реализуйте метод, возвращающий Map. Данный Map должен соотносить слово и
-      /// количество его вхождений в данную коллекцию.
       print(SearchWordCountInList(value: <String>[
         'String',
         'value',
@@ -40,10 +40,6 @@ void main(List<String> arg) {
       ]));
     }
     if (numTask == 5) {
-      ///Задача: 5. Есть коллекция строк вида ‘one, two, three, cat, dog’ или любого другого. Реализуйте метод,
-      ///возвращающий цифры без повторений, которые встречаются в данной строке. Однако цифры встречаются в виде
-      ///английских слов от zero до nine. Например, в результате строки ‘one, two, zero, zero’ мы получим следующий
-      ///результат: [1, 2, 0]. Если в строке есть слова, не являющиеся цифрами от 0 до 9, пропускайте их.
       print(WordIntToInt(value: <String>[
         'one',
         'value',

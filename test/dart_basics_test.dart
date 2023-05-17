@@ -19,6 +19,12 @@ void main() {
       expect(DelimetersCalculator(value: 12).lcm(30) ,60);
       expect(DelimetersCalculator(value: 72).lcm(64) ,576);
 
+      expect(DelimetersCalculator(value: 124).fin() ,<int>[2, 2, 31]);
+      expect(DelimetersCalculator(value: 15).fin()  ,<int>[3, 5]);
+      expect(DelimetersCalculator(value: 1500).fin(),<int>[2, 2, 3, 5, 5, 5]);
+      expect(DelimetersCalculator(value: 12).fin()  ,<int>[2, 2, 3]);
+      expect(DelimetersCalculator(value: 72).fin()  ,<int>[2, 2, 2, 3, 3]);
+
     });
     test('Test task 2', () {
       expect(intToBin(156813138), '1001010110001100011101010010');

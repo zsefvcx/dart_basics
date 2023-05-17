@@ -6,18 +6,14 @@ class DelimetersCalculator {
 
   final int _value;
 
-  final List<int> _result = [];
-  //final int?
-
-
   DelimetersCalculator({required int value}) : _value = value{
     //_convert();
   }
 
   ///Наибольший общий делитель (англ. greatest common divisor)
-  int gcd(int b){
-    int min = _value>b?b:_value;
-    int max = _value>b?_value:b;
+  int gcd(int x){
+    int min = _value>x?x:_value;
+    int max = _value>x?_value:x;
     int search(int max, int min){
       return min > 0 ? search(min, max%=min) : max;
     }
@@ -25,15 +21,31 @@ class DelimetersCalculator {
   }
 
   ///Наименьшее общее кратное (англ. least common multiple)
-  int lcm(int b) {
-     return (_value ~/ gcd(b)) * b;
+  int lcm(int x) {
+     return (_value ~/ gcd(x)) * x;
   }
 
-  ///Факториза́цией натурального числа
-  //Factorization of a natural number
+  ///Факториза́ция натурального числа (англ. integer factorization)
+  List<int> fin(){
+    List<int> result = [];
+    int j = 2;
+    int buffer = _value;
+    while(j*j <= buffer){
+      if(buffer%j==0){
+        result.add(j);
+        buffer ~/= j;
+        j = 2;
+      } else {
+        ++j;
+      }
+    }
+    result.add(buffer);
+    return result;
+  }
+
 
   @override
   String toString() {
-    return _result.toString();
+    return _value.toString();
   }
 }
