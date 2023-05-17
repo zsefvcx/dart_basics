@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:dart_basics/dart_basics.dart';
 
 void main(List<String> arg) {
@@ -86,7 +88,7 @@ void main(List<String> arg) {
       print('3√(-27)... ${pow((-27).rootNExp(3), 3)} ?=? -27');
       print('8√(275555)... ${pow((275555).rootNExp(8), 8)} ?=? 275555');
     }
-    if (numTask == 8){
+    if (numTask == 8) {
       User user = User(email: 'email@mail.ru');
       print(user.toString());
       GeneralUser generalUser = GeneralUser(email: 'GeneralUser@mail.ru');
@@ -110,6 +112,25 @@ void main(List<String> arg) {
         rethrow;
       }
       print(userManager.usersEmail);
+    }
+    if (numTask == 9) {
+      void test({required Function func}){
+        IntegralRiemann integral = IntegralRiemann(func: func, x0: -10, xN: 10, dX: 1);
+        integral.execute();
+        print(integral.result);
+        print(integral.pointRemoveNaN);
+        print(integral.integralPoint);
+      }
+      test(func: (double x)=> x);
+      test(func: (double x)=> x*x);
+      test(func: (double x)=> x*x*x);
+      test(func: (double x)=> 1/x);
+      test(func: (double x)=> 1/x+10);
+      test(func: (double x)=> tan(x));
+      test(func: (double x)=> 1/tan(x));
+    }
+    if (numTask ==10) {
+
     }
   } on Exception catch (e, p) {
     print('${StackTrace.current}');

@@ -6,7 +6,7 @@ import 'package:dart_basics/dart_basics.dart';
 
 void main() {
   group('A group of tests', () {
-    test('Test task 1', () {
+    test('Test task 01', () {
       expect(DelimetersCalculator(value: 15).gcd(20) ,5);
       expect(DelimetersCalculator(value: 15).gcd(20) ,5);
       expect(DelimetersCalculator(value: 15).gcd(35) ,5);
@@ -26,11 +26,11 @@ void main() {
       expect(DelimetersCalculator(value: 72).fin()  ,<int>[2, 2, 2, 3, 3]);
 
     });
-    test('Test task 2', () {
+    test('Test task 02', () {
       expect(intToBin(156813138), '1001010110001100011101010010');
       expect(binToInt('1001010110001100011101010010'), 156813138);
     });
-    test('Test task 3', () {
+    test('Test task 03', () {
       expect(
         searchNumInString('String value 50 50.0 50.2 80 2.2 parse int 89'),
         <num>{50, 50.2, 80, 2.2, 89},
@@ -40,7 +40,7 @@ void main() {
         <num>{50, 50.2, 80, 2.2, 89},
       );
     });
-    test('Test task 4', () {
+    test('Test task 04', () {
       expect(
           SearchWordCountInList(value: <String>[
             'String',
@@ -65,7 +65,7 @@ void main() {
             '89': 2,
           });
     });
-    test('Test task 5', () {
+    test('Test task 05', () {
       expect(
           WordIntToInt(value: <String>[
             'one',
@@ -83,7 +83,7 @@ void main() {
           ]).result,
           <int>[1, 2, 3, 0, 8]);
     });
-    test('Test task 6', () {
+    test('Test task 06', () {
       expect(
           (Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 1, z: 1)) -
               1.7320508075688772).abs() < 1E-10,
@@ -120,7 +120,7 @@ void main() {
       expect(Point.unitVectorY().toString(),'x:0.0, y:1.0, z:0.0,');
       expect(Point.unitVectorZ().toString(),'x:0.0, y:0.0, z:1.0,');
     });
-    test('Test task 7', () {
+    test('Test task 07', () {
       expect(( 4).rootNExp(2), 2);
       expect(( 9).rootNExp(2), 3);
       expect((27).rootNExp(2), 5.196152422706632);
@@ -128,7 +128,7 @@ void main() {
       expect((-27).rootNExp(3), -3);
       expect((275555).rootNExp(8), 4.786587881808159);
     });
-    test('Test task 8', () {
+    test('Test task 08', () {
       User user = User(email: 'email@mail.ru');
       expect(user.toString(), 'Instance of \'User\'');
       GeneralUser generalUser = GeneralUser(email: 'GeneralUser@mail.ru');
@@ -143,6 +143,23 @@ void main() {
       userManager.add(adminUser);
       expect(userManager.usersEmail,
           <String>['email@mail.ru', 'GeneralUser@mail.ru', 'mail.ru']);
+    });
+    test('Test task 09', () {
+      double tests({required Function func, double x0=-10, double xN=10}){
+        IntegralRiemann integral = IntegralRiemann(func: func, x0: x0, xN: xN, dX: 1);
+        integral.execute();
+        return integral.result;
+      }
+      expect(tests(func: (double x)=> x), 0);
+      expect(tests(func: (double x)=> x*x), 770);
+      expect(tests(func: (double x)=> x*x*x), 0);
+      expect(tests(func: (double x)=> 1/x), 0);
+      expect(tests(func: (double x)=> (1/x)+10), 200);
+      expect(tests(func: (double x)=> (1/(x-10)), x0: 0, xN: 20), 0);
+      expect(tests(func: (double x)=> (1/(x+10)), x0: 0, xN: 20), 1.1660188769521374);
+    });
+    test('Test task 10', () {
+
     });
   });
 }
