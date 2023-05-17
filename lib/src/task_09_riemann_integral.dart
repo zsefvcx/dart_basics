@@ -21,13 +21,13 @@ class IntegralRiemann {
 
   IntegralRiemann({
     required Function func,
-    required double x0,
-    required double xN,
+    required double x1,
+    required double x2,
     required double dX,
     double accuracy = 1E-10,
   })  : _func = func,
-        _x0 = x0,
-        _xN = xN,
+        _x0 = x1,
+        _xN = x2,
         _dX = dX,
   _accuracy = accuracy;
 

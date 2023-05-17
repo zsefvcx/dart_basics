@@ -163,7 +163,7 @@ void main() {
     });
     test('Test task 09', () {
       double tests({required Function func, double x0=-10, double xN=10}){
-        IntegralRiemann integral = IntegralRiemann(func: func, x0: x0, xN: xN, dX: 1);
+        IntegralRiemann integral = IntegralRiemann(func: func, x1: x0, x2: xN, dX: 1);
         integral.execute();
         return integral.result;
       }
