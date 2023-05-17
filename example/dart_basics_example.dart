@@ -19,7 +19,7 @@ void main(List<String> arg) {
     if (numTask == 2) {
       void tests<T>(T value){
         try {
-          print(ConvertBoolean(value: value));
+          print(ConvertBoolean(value: value).result);
         } catch (e, p) {
           print('${StackTrace.current}');
           print(p);
@@ -150,7 +150,22 @@ void main(List<String> arg) {
       test(func: (double x)=> 1/tan(x));
     }
     if (numTask ==10) {
-
+      try {
+        print(SystemLinearEquations(
+          valueA: [
+            [1,1,1,],
+            [1,1,1,],
+            [1,0,1,],
+          ],
+          valueB: [1,1,1],
+        ));
+      } on Exception catch (e, p) {
+        print('${StackTrace.current}');
+        print(p);
+        print(e);
+      } catch(_){
+        rethrow;
+      }
     }
   } on Exception catch (e, p) {
     print('${StackTrace.current}');

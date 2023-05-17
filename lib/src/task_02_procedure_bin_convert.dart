@@ -7,6 +7,8 @@ class ConvertBoolean<T, R> {
   late final String _bool;
   late final int _int;
 
+  get result => (_value is int)?_int:_bool;
+
   ConvertBoolean({required T value}) :
         assert((value is int || value is String)?true:false),
         assert(value is int?(value<0?false:true):true),
@@ -53,7 +55,7 @@ class ConvertBoolean<T, R> {
 
   @override
   String toString() {
-    return _value is int?_bool.toString():_int.toString();
+    return (_value is int)?_bool.toString():_int.toString();
   }
 }
 

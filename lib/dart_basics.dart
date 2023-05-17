@@ -12,5 +12,6 @@ export 'src/task_06_class_point.dart';
 export 'src/task_07_custom_root_n_exponent.dart';
 export 'src/task_08_class_user.dart';
 export 'src/task_09_riemann_integral.dart';
+export 'src/task_10_system_of_linear_equations.dart';
 
 // TODO: Export any libraries intended for clients of this package.
