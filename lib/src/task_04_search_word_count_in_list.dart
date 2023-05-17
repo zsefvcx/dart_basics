@@ -9,10 +9,10 @@ class SearchWordCountInList{
   Map<String, int> get result => _result;
 
   SearchWordCountInList({required List<String> value}) : _value = value{
-    _convert();
+    _search();
   }
 
-  void _convert(){
+  void _search(){
     for (var elem in _value) {
       var data = _result[elem];
       if (data==null){

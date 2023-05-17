@@ -22,9 +22,10 @@ void main(List<String> arg) {
           '                                        156813138');
     }
     if (numTask == 3) {
-      print(searchNumInString('String value 50 50.0 50.2 80 2.2 parse int 89'));
       print(
-          searchNumInString2('String value 50 50.0 50.2 80 2.2 parse int 89'));
+          SearchNumInString(value: 'String value 50 50.0 50.2 80 2.2 parse int 89'));
+      print(
+          SearchNumInString(value: 'String 10.59 50 50.0 50.2 80 2.2 parse int 89'));
     }
     if (numTask == 4) {
       print(SearchWordCountInList(value: <String>[
