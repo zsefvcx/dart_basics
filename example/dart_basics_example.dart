@@ -8,18 +8,37 @@ void main(List<String> arg) {
   try {
     ///При выполнении мы запускаем только то задание ктоторое нам надо протестировать.
     final int numTask = int.parse(arg[0]);
+    if (numTask == 0) {
+      print('Change Arguments');
+    }
     if (numTask == 1) {
       print(DelimetersCalculator(value: 15).gcd(20));
       print(DelimetersCalculator(value: 15).lcm(20));
       print(DelimetersCalculator(value: 124).fin());
     }
     if (numTask == 2) {
-      ///2. Реализуйте методы для преобразования целых чисел из десятичной системы в двоичную и обратно
-      print('intToBin(156813138): ${intToBin(156813138)} \n'
-          '                     1001010110001100011101010010');
-      print(
-          'intToBin(1001010110001100011101010010): ${binToInt('1001010110001100011101010010')} \n'
-          '                                        156813138');
+      void tests<T>(T value){
+        try {
+          print(ConvertBoolean(value: value));
+        } catch (e, p) {
+          print('${StackTrace.current}');
+          print(p);
+          print(e);
+        }
+      }
+      tests(-5);
+      tests('-5');
+      tests(5.0);
+      tests('10ФФФ');
+      tests(5);
+      tests(50);
+      tests(500);
+      tests(156813138);
+      tests('10');
+      tests('111111111');
+      tests('101010111');
+      tests('1001010110001100011101010010');
+
     }
     if (numTask == 3) {
       print(

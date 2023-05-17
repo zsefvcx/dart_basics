@@ -27,8 +27,25 @@ void main() {
 
     });
     test('Test task 02', () {
-      expect(intToBin(156813138), '1001010110001100011101010010');
-      expect(binToInt('1001010110001100011101010010'), 156813138);
+      String tests<T>(T value){
+        try {
+          return ConvertBoolean(value: value).toString();
+        } catch (e, p) {
+          print('${StackTrace.current}');
+          print(p);
+          print(e);
+        }
+        return '';
+      }
+      expect(tests(5), 5.toRadixString(2));
+      expect(tests(50), 50.toRadixString(2));
+      expect(tests(500), 500.toRadixString(2));
+      expect(tests(156813138), 156813138.toRadixString(2));
+      expect(tests(5.toRadixString(2)), '5');
+      expect(tests(50.toRadixString(2)), '50');
+      expect(tests(500.toRadixString(2)), '500');
+      expect(tests(156813138.toRadixString(2)), '156813138');
+
     });
     test('Test task 03', () {
       expect(
