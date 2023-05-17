@@ -128,5 +128,21 @@ void main() {
       expect((-27).rootNExp(3), -3);
       expect((275555).rootNExp(8), 4.786587881808159);
     });
+    test('Test task 8', () {
+      User user = User(email: 'email@mail.ru');
+      expect(user.toString(), 'Instance of \'User\'');
+      GeneralUser generalUser = GeneralUser(email: 'GeneralUser@mail.ru');
+      expect(generalUser.toString(), 'Instance of \'GeneralUser\'');
+      expect(generalUser.getMailSystem(), 'mail.ru');
+      AdminUser adminUser = AdminUser(email: 'AdminUser@mail.ru');
+      expect(adminUser.toString(), 'Instance of \'AdminUser\'');
+      expect(adminUser.getMailSystem(), 'mail.ru');
+      UserManager userManager = UserManager();
+      userManager.add(user);
+      userManager.add(generalUser);
+      userManager.add(adminUser);
+      expect(userManager.usersEmail,
+          <String>['email@mail.ru', 'GeneralUser@mail.ru', 'mail.ru']);
+    });
   });
 }

@@ -1,3 +1,4 @@
+import 'dart:convert';
 
 /// 8. Создайте класс User, у которого есть поле email. Реализуйте два наследника данного класса
 /// AdminUser и GeneralUser. Реализуйте mixin над классом User, у которого будет метод
@@ -11,32 +12,46 @@
 class User {
   final String _email;
 
-  factory User({required String email}){
-    if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email)){
-      throw Exception('Error E-mail. Check your email');
-    }
-    return User._init(email: email);
-  }
+  String get email => _email;
 
-  User._init({required String email}) : _email = email;
-
+  User({required String email})
+      : assert(RegExp(
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(email)),
+        _email = email;
 }
 
 mixin methodGetMailSystem on User {
   String getMailSystem() => _email.split("@").last;
 }
 
+class AdminUser extends User with methodGetMailSystem {
+  AdminUser({required super.email});
 
-class AdminUser extends User{
-
-
-
-
+  @override
+  String get email => getMailSystem();
 }
 
-class GeneralUser extends User{
-
+class GeneralUser extends User with methodGetMailSystem {
   GeneralUser({required super.email});
+}
 
+class UserManager<T extends User>{
+  final Set<T> _users = {};
+
+  void add(T user) {
+    if(!_users.contains(user)) {
+      _users.add(user);
+    } else {
+      throw Exception('User already exists');
+    }
+  }
+
+  List<String> get usersEmail {
+    List<String> result = [];
+    for (var element in _users) {
+      result.add(element.email);
+    }
+    return result;
+  }
 }

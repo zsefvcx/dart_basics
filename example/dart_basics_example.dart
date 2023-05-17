@@ -86,6 +86,31 @@ void main(List<String> arg) {
       print('3√(-27)... ${pow((-27).rootNExp(3), 3)} ?=? -27');
       print('8√(275555)... ${pow((275555).rootNExp(8), 8)} ?=? 275555');
     }
+    if (numTask == 8){
+      User user = User(email: 'email@mail.ru');
+      print(user.toString());
+      GeneralUser generalUser = GeneralUser(email: 'GeneralUser@mail.ru');
+      print(generalUser.toString());
+      print('MailSystem: ${generalUser.getMailSystem()}');
+      AdminUser adminUser = AdminUser(email: 'AdminUser@mail.ru');
+      print(adminUser.toString());
+      print('MailSystem: ${adminUser.getMailSystem()}');
+      UserManager userManager = UserManager();
+
+      userManager.add(user);
+      userManager.add(generalUser);
+      userManager.add(adminUser);
+      try {
+        userManager.add(adminUser);
+      } on Exception catch (e, p) {
+        print('${StackTrace.current}');
+        print(p);
+        print(e);
+      } catch(_){
+        rethrow;
+      }
+      print(userManager.usersEmail);
+    }
   } on Exception catch (e, p) {
     print('${StackTrace.current}');
     print(p);
