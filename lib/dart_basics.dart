@@ -10,5 +10,6 @@ export 'src/task_04_search_word_count_in_list.dart';
 export 'src/task_05_one_two_three_to_int.dart';
 export 'src/task_06_class_point.dart';
 export 'src/task_07_custom_root_n_exponent.dart';
+export 'src/task_08_class_user.dart';
 
 // TODO: Export any libraries intended for clients of this package.

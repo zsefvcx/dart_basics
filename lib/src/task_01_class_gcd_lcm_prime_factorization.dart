@@ -6,9 +6,7 @@ class DelimetersCalculator {
 
   final int _value;
 
-  DelimetersCalculator({required int value}) : _value = value{
-    //_convert();
-  }
+  DelimetersCalculator({required int value}) : _value = value;
 
   ///Наибольший общий делитель (англ. greatest common divisor)
   int gcd(int x){
