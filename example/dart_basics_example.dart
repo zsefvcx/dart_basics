@@ -158,7 +158,7 @@ void main(List<String> arg) {
             [1,0,1,],
           ],
           valueB: [1,1,1],
-        ));
+        ).valueX);
       } on Exception catch (e, p) {
         print('${StackTrace.current}');
         print(p);
