@@ -82,7 +82,7 @@ class Point {
     return sqrt((p * (p - a) * (p - b) * (p - c)));
   }
 
-  //override method toString
+  ///override method toString
   @override
   String toString() {
     return 'x:$_x, y:$_y, z:$_z,';

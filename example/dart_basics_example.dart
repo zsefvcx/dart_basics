@@ -223,10 +223,16 @@ void main(List<String> arg) {
     if (numTask ==10) {
       try {
         void tests({required List<List<double>> valueA, required List<double> valueB}) {
-          print(SystemLinearEquations(
-            valueA: valueA,
-            valueB: valueB,
-          ).valueX);
+          try {
+            print(SystemLinearEquations(
+              valueA: valueA,
+              valueB: valueB,
+            ).valueX);
+          } catch (e, p) {
+            print('${StackTrace.current}');
+            print(p);
+            print(e);
+          }
         }
         tests(
           valueA: [
@@ -236,7 +242,30 @@ void main(List<String> arg) {
           ],
           valueB: [-3, 1, 2],
         );
-
+        tests(
+          valueA: [
+            [0, -2, 1,],
+            [1, 3, -2,],
+            [3, -1, -1,],
+          ],
+          valueB: [-3, 1, 2],
+        );
+        tests(
+          valueA: [
+            [1, 0, 0,],
+            [0, 0, 0,],
+            [0, 0, 0,],
+          ],
+          valueB: [-3, 1, 2],
+        );
+        tests(
+          valueA: [
+            [1, 1, 1,],
+            [1, 1, 1,],
+            [1, 1, 1,],
+          ],
+          valueB: [1, 1, 1],
+        );
 
       } on Exception catch (e, p) {
         print('${StackTrace.current}');

@@ -23,12 +23,13 @@ class SystemLinearEquations {
     for(int i = 0; i < _valueAB.length; i++) {
       _valueAB[i].add(valueB[i]);
     }
-    _calculation();
+      _calculation();
   }
 
   void _calculation() {
-      if(_valueX.isNotEmpty) _valueX.clear();
-      for (int i = 0; i < _valueAB.length; i++) {
+    if(_valueX.isNotEmpty) _valueX.clear();
+
+    for (int i = 0; i < _valueAB.length; i++) {
       double buffer = _valueAB[i][i];
       for (int j = i; j < _valueAB[i].length; j++) {
         _valueAB[i][j] /= buffer;
@@ -53,10 +54,14 @@ class SystemLinearEquations {
       }
     }
     for (int i = 0; i < _valueAB.length; i++) {
+      if(_valueAB[i][_valueAB[i].length-1].isNaN){
+        throw Exception('one or more NaN roots');
+      }
       _valueX.add(
           double.parse(_valueAB[i][_valueAB[i].length-1].toStringAsFixed(10))
       );
     }
+
   }
 
   @override
