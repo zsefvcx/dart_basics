@@ -162,8 +162,8 @@ void main() {
     test('Test task 09', () {
       double tests({required Function func, double x0=-10, double xN=10}){
         IntegralRiemann integral = IntegralRiemann(func: func, x1: x0, x2: xN, dX: 1);
-        integral.execute();
-        return integral.result;
+        double result = integral.execute();
+        return result;
       }
       expect(tests(func: (double x)=> x), 0);
       expect(tests(func: (double x)=> x*x), 770);

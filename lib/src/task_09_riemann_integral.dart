@@ -9,12 +9,14 @@ class IntegralRiemann {
   final double _dX;
   final double _accuracy;
 
-  double _result = 0;
+  double? _result;
+
   final List<double> _pointRemoveNaN = [];
   final List<double> _integralPoint = [];
 
-  double get result => _result>_accuracy?_result:0;
-  List<double> get integralPoint => _integralPoint;
+  double get result => _result??execute();
+
+  List<double> get integralPoint =>  _integralPoint;
   List<double> get pointRemoveNaN => _pointRemoveNaN;
 
   final Function _func;
@@ -31,19 +33,19 @@ class IntegralRiemann {
         _dX = dX,
   _accuracy = accuracy;
 
-  void execute() {
+  double execute() {
     if(_pointRemoveNaN.isNotEmpty) _pointRemoveNaN.clear();
     if(_integralPoint.isNotEmpty) _integralPoint.clear();
-    int repeat = 1;
+    _result = 0;
     for (double y = _x0; y <= _xN; y += _dX) {
       if (_func(y) == double.infinity) {
         _pointRemoveNaN.add(y);
-       // repeat++;
       } else {
-        _integralPoint.add(_func(y) * _dX * repeat);
-        _result += _integralPoint.last;
-        repeat = 1;
+        _integralPoint.add(_func(y) * _dX);
+        _result = _result! + _integralPoint.last;
       }
     }
+    _result = _result!>_accuracy?_result:0;
+    return _result??0;
   }
 }

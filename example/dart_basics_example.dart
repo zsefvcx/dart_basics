@@ -205,7 +205,8 @@ void main(List<String> arg) {
     if (numTask == 9) {
       void test({required Function func}){
         IntegralRiemann integral = IntegralRiemann(func: func, x1: -10, x2: 10, dX: 1);
-        integral.execute();
+        print(integral.execute());
+        print(integral.execute());
         print(integral.result);
         print(integral.pointRemoveNaN);
         print(integral.integralPoint);
