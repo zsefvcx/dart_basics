@@ -5,13 +5,11 @@ class SearchWordCountInList{
   final List<String> _value;
   final Map<String, int> _result = {};
 
-  Map<String, int> get result => _result;
+  Map<String, int> get result => search();
 
-  SearchWordCountInList({required List<String> value}) : _value = value{
-    _search();
-  }
+  SearchWordCountInList({required List<String> value}) : _value = value;
 
-  void _search(){
+  Map<String, int> search(){
     for (var elem in _value) {
       var data = _result[elem];
       if (data==null){
@@ -20,10 +18,11 @@ class SearchWordCountInList{
         _result[elem] = data + 1;
       }
     }
+    return _result;
   }
 
   @override
   String toString() {
-    return _result.toString();
+    return search().toString();
   }
 }

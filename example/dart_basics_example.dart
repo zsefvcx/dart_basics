@@ -66,7 +66,7 @@ void main(List<String> arg) {
         'int',
         '89',
         '89',
-      ]));
+      ]).search());
     }
     numTask++;print('\ntask #$numTask\n');
     if (numTask == 5) {
