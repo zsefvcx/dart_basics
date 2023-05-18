@@ -4,32 +4,34 @@ import 'dart:math';
 import 'package:dart_basics/dart_basics.dart';
 
 void main(List<String> arg) {
-  print(arg);
   try {
-    ///При выполнении мы запускаем только то задание ктоторое нам надо протестировать.
-    final int numTask = int.parse(arg[0]);
-    if (numTask == 0) {
-      print('Change Arguments');
-    }
+    int numTask = 1;print('\ntask #$numTask\n');
     if (numTask == 1) {
       print(DelimetersCalculator(value: 15).gcd(20));
       print(DelimetersCalculator(value: 15).lcm(20));
       print(DelimetersCalculator(value: 124).fin());
     }
+    numTask++;print('\ntask #$numTask\n');
     if (numTask == 2) {
       void tests<T>(T value){
         try {
           print(ConvertBoolean(value: value).result);
         } catch (e, p) {
+          print('Error value:$value');
           print('${StackTrace.current}');
           print(p);
           print(e);
+          print('');
         }
       }
+      tests(0);
+      tests('0');
+      tests('');
       tests(-5);
       tests('-5');
       tests(5.0);
       tests('10ФФФ');
+      tests('500');
       tests(5);
       tests(50);
       tests(500);
@@ -40,12 +42,14 @@ void main(List<String> arg) {
       tests('1001010110001100011101010010');
 
     }
+    numTask++;print('\ntask #$numTask\n');
     if (numTask == 3) {
       print(
           SearchNumInString(value: 'String value 50 50.0 50.2 80 2.2 parse int 89'));
       print(
           SearchNumInString(value: 'String 10.59 50 50.0 50.2 80 2.2 parse int 89'));
     }
+    numTask++;print('\ntask #$numTask\n');
     if (numTask == 4) {
       print(SearchWordCountInList(value: <String>[
         'String',
@@ -61,6 +65,7 @@ void main(List<String> arg) {
         '89',
       ]));
     }
+    numTask++;print('\ntask #$numTask\n');
     if (numTask == 5) {
       print(WordIntToInt(value: <String>[
         'one',
@@ -76,6 +81,7 @@ void main(List<String> arg) {
         'zero',
       ]));
     }
+    numTask++;print('\ntask #$numTask\n');
     if (numTask == 6) {
       print(Point(x: 0, y: 0, z: 0).distanceTo(Point(x: 1, y: 1, z: 1)));
       print(Point.spaceTriangle(
@@ -88,6 +94,7 @@ void main(List<String> arg) {
       print(Point.unitVectorY());
       print(Point.unitVectorZ());
     }
+    numTask++;print('\ntask #$numTask\n');
     if (numTask == 7) {
       num pow(num x, num exponent) => exponent <=1 ? x : x*pow(x, exponent-1);
       print('2√1... ${pow(1.rootNExp(2), 2)} ?=? 1.0');
@@ -108,6 +115,7 @@ void main(List<String> arg) {
       print('3√(-27)... ${pow((-27).rootNExp(3), 3)} ?=? -27');
       print('8√(275555)... ${pow((275555).rootNExp(8), 8)} ?=? 275555');
     }
+    numTask++;print('\ntask #$numTask\n');
     if (numTask == 8) {
       User user = User(email: 'email@mail.ru');
       print(user.toString());
@@ -133,6 +141,7 @@ void main(List<String> arg) {
       }
       print(userManager.usersEmail);
     }
+    numTask++;print('\ntask #$numTask\n');
     if (numTask == 9) {
       void test({required Function func}){
         IntegralRiemann integral = IntegralRiemann(func: func, x1: -10, x2: 10, dX: 1);
@@ -149,6 +158,7 @@ void main(List<String> arg) {
       test(func: (double x)=> tan(x));
       test(func: (double x)=> 1/tan(x));
     }
+    numTask++;print('\ntask #$numTask\n');
     if (numTask ==10) {
       try {
         void tests({required List<List<double>> valueA, required List<double> valueB}) {

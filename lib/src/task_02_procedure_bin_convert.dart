@@ -7,12 +7,13 @@ class ConvertBoolean<T, R> {
   late final String _bool;
   late final int _int;
 
-  get result => (_value is int)?_int:_bool;
+  get result => (_value is int)?_bool:_int;
 
   ConvertBoolean({required T value}) :
         assert((value is int || value is String)?true:false),
         assert(value is int?(value<0?false:true):true),
-        assert(value is String?RegExp(r'[0-1]').hasMatch(value):true),
+        assert(value is String?value.length==0?false:true:true),
+        assert(value is String?RegExp(r'^[0-1]+$').hasMatch(value):true),
         _value = value
         {
     _convert();
@@ -20,32 +21,20 @@ class ConvertBoolean<T, R> {
 
   void _convert(){
     if (_value is int){
-      // if(_value < 0){
-      //   throw Exception("unsuitable value!");
-      // }
-      List<String> result = [];
       int buffer = _value as int;
-      while(buffer>0){
-        if(buffer&0x01==1){
-          result.add('1');
-        } else {
-          result.add('0');
-        }
+      List<String> result = [];
+      do{
+        buffer&0x01==1?result.add('1'):result.add('0');
         buffer>>=1;
-      }
+      }while(buffer>0);
       _bool = result.reversed.join();
       _int = _value as int;
     } else if (_value is String){
-      // Set <String> check = value.split('').toSet();
-      // if(check.isEmpty || check.length != 2 || !check.first.contains(RegExp(r'[0-1]'),0) || !check.last.contains(RegExp(r'[0-1]'),0)){
-      //   throw Exception("unsuitable value!");
-      // }
-      int result = 0;
       String buffer = _value as String;
+      int result = 0;
       for (int i = 0; i < buffer.length; i++){
         if(buffer[i]=='1') {
           result = result ^ (1<<(buffer.length-i-1));
-        } else {
         }
       }
       _int = result;
@@ -58,18 +47,5 @@ class ConvertBoolean<T, R> {
     return (_value is int)?_bool.toString():_int.toString();
   }
 }
-
-int binToInt(String value) {
-
-  int result = 0;
-  for (int i = 0; i < value.length; i++){
-    if(value[i]=='1') {
-      result = result ^ (1<<(value.length-i-1));
-    } else {
-    }
-  }
-  return result;
-}
-
 
 
