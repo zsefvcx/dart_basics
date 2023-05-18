@@ -151,14 +151,22 @@ void main(List<String> arg) {
     }
     if (numTask ==10) {
       try {
-        print(SystemLinearEquations(
+        void tests({required List<List<double>> valueA, required List<double> valueB}) {
+          print(SystemLinearEquations(
+            valueA: valueA,
+            valueB: valueB,
+          ).valueX);
+        }
+        tests(
           valueA: [
-            [1,1,1,],
-            [1,1,1,],
-            [1,0,1,],
+            [2, -2, 1,],
+            [1, 3, -2,],
+            [3, -1, -1,],
           ],
-          valueB: [1,1,1],
-        ).valueX);
+          valueB: [-3, 1, 2],
+        );
+
+
       } on Exception catch (e, p) {
         print('${StackTrace.current}');
         print(p);

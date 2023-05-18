@@ -178,6 +178,38 @@ void main() {
       expect(tests(func: (double x)=> (1/(x+10)), x0: 0, xN: 20), 1.1660188769521374);
     });
     test('Test task 10', () {
+      expect(
+        SystemLinearEquations(
+          valueA: [
+            [2, -2, 1,],
+            [1, 3, -2,],
+            [3, -1, -1,],
+          ],
+          valueB: [-3, 1, 2],
+        ).valueX,
+        <double>[
+          double.parse((-7/5 ).toStringAsFixed(10)),
+          double.parse((-2   ).toStringAsFixed(10)),
+          double.parse((-21/5).toStringAsFixed(10)),
+        ]
+      );
+      expect(
+          SystemLinearEquations(
+            valueA: [
+              [10, -2, 1,],
+              [1, 10, -2,],
+              [3, -1, 10,],
+            ],
+            valueB: [-3, 1, 2],
+          ).valueX,
+          //<double>[-287/981,187/981,301/981]
+          <double>[
+            double.parse((-287/981).toStringAsFixed(10)),
+            double.parse(( 187/981).toStringAsFixed(10)),
+            double.parse(( 301/981).toStringAsFixed(10)),
+          ],
+      );
+
 
     });
   });
