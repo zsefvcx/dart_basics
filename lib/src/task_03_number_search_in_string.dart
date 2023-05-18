@@ -3,9 +3,9 @@
 
 class SearchNumInString {
   final List<String> _value;
-  final Set<num> _result = {};
+  final List<num> _result = [];
 
-  Set<num> get result => _result;
+  List<num> get result => _result;
 
   SearchNumInString({required String value}) : _value = value.split(' '){
     _search();

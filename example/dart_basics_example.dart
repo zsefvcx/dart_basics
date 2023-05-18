@@ -44,6 +44,9 @@ void main(List<String> arg) {
     }
     numTask++;print('\ntask #$numTask\n');
     if (numTask == 3) {
+
+      print(
+          SearchNumInString(value: '5 -5 - 5'));
       print(
           SearchNumInString(value: 'String value 50 50.0 50.2 80 2.2 parse int 89'));
       print(

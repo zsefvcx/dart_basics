@@ -48,11 +48,11 @@ void main() {
     test('Test task 03', () {
       expect(
         SearchNumInString(value: 'String value 50 50.0 50.2 80 2.2 parse int 89').result,
-        <num>{50, 50.2, 80, 2.2, 89},
+        <num>[50, 50, 50.2, 80, 2.2, 89],
       );
       expect(
-        SearchNumInString(value: 'String value 50 50.0 50.2 80 2.2 parse int 89').result,
-        <num>{50, 50.2, 80, 2.2, 89},
+        SearchNumInString(value: 'String value 50.0 50.0 50.2 80.0 2.2 parse int 89').result,
+        <num>[50, 50, 50.2, 80, 2.2, 89],
       );
     });
     test('Test task 04', () {
