@@ -48,6 +48,11 @@ void main(List<String> arg) {
       print(
           SearchNumInString(value: '5 -5 - 5'));
       print(
+          SearchNumInString(value: '5 -5 - 5').result);
+      print(
+          SearchNumInString(value: '5 -5 - 5').search());
+
+      print(
           SearchNumInString(value: 'String value 50 50.0 50.2 80 2.2 parse int 89'));
       print(
           SearchNumInString(value: 'String 10.59 50 50.0 50.2 80 2.2 parse int 89'));
@@ -67,6 +72,32 @@ void main(List<String> arg) {
         '89',
         '89',
       ]).search());
+      print(SearchWordCountInList(value: <String>[
+        'String',
+        'value',
+        'value',
+        '50',
+        '50',
+        '50',
+        '80',
+        'parse',
+        'int',
+        '89',
+        '89',
+      ]));
+      print(SearchWordCountInList(value: <String>[
+        'String',
+        'value',
+        'value',
+        '50',
+        '50',
+        '50',
+        '80',
+        'parse',
+        'int',
+        '89',
+        '89',
+      ]).result);
     }
     numTask++;print('\ntask #$numTask\n');
     if (numTask == 5) {
@@ -83,6 +114,32 @@ void main(List<String> arg) {
         '89',
         'zero',
       ]));
+      print(WordIntToInt(value: <String>[
+        'one',
+        'value',
+        'value',
+        '50',
+        'two',
+        '50',
+        '80',
+        'parse',
+        'three',
+        '89',
+        'zero',
+      ]).result);
+      print(WordIntToInt(value: <String>[
+        'one',
+        'value',
+        'value',
+        '50',
+        'two',
+        '50',
+        '80',
+        'parse',
+        'three',
+        '89',
+        'zero',
+      ]).convert());
     }
     numTask++;print('\ntask #$numTask\n');
     if (numTask == 6) {

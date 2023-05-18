@@ -16,7 +16,8 @@ class SystemLinearEquations {
       {required List<List<double>> valueA, required List<double> valueB})
       : assert(valueB.isNotEmpty && valueA.isNotEmpty),
         assert(valueB.length == valueA.length),
-        assert(valueA.fold(valueA.length, (previousValue, element) => min(previousValue, element.length))==valueA.length),
+        assert(valueA.fold(valueA.length, (previousValue, element) =>
+            min(previousValue, element.length))==valueA.length),
         assert(valueA[0][0]!=0),
         _valueAB = valueA{
     for(int i = 0; i < _valueAB.length; i++) {
@@ -26,7 +27,8 @@ class SystemLinearEquations {
   }
 
   void _calculation() {
-    for (int i = 0; i < _valueAB.length; i++) {
+      if(_valueX.isNotEmpty) _valueX.clear();
+      for (int i = 0; i < _valueAB.length; i++) {
       double buffer = _valueAB[i][i];
       for (int j = i; j < _valueAB[i].length; j++) {
         _valueAB[i][j] /= buffer;
@@ -51,7 +53,9 @@ class SystemLinearEquations {
       }
     }
     for (int i = 0; i < _valueAB.length; i++) {
-      _valueX.add(double.parse(_valueAB[i][_valueAB[i].length-1].toStringAsFixed(10)));
+      _valueX.add(
+          double.parse(_valueAB[i][_valueAB[i].length-1].toStringAsFixed(10))
+      );
     }
   }
 

@@ -32,6 +32,8 @@ class IntegralRiemann {
   _accuracy = accuracy;
 
   void execute() {
+    if(_pointRemoveNaN.isNotEmpty) _pointRemoveNaN.clear();
+    if(_integralPoint.isNotEmpty) _integralPoint.clear();
     int repeat = 1;
     for (double y = _x0; y <= _xN; y += _dX) {
       if (_func(y) == double.infinity) {

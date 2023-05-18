@@ -13,23 +13,23 @@ class WordIntToInt {
   final List<String> _value;
   final List<int> _result = [];
 
-  List<int> get result => _result;
+  List<int> get result => _result.isEmpty?convert():_result;
 
-  WordIntToInt({required List<String> value}) : _value = value{
-    _convert();
-  }
+  WordIntToInt({required List<String> value}) : _value = value;
 
-  void _convert() {
+  List<int> convert() {
+    if(_result.isNotEmpty) _result.clear();
     for (var elem in _value) {
       if (_intWord.contains(elem.toLowerCase())) {
         _result.add(_intWord.indexOf(elem.toLowerCase(), 0));
       }
     }
+    return _result;
   }
 
   @override
   String toString() {
-    return _result.toString();
+    return _result.isEmpty?convert().toString():_result.toString();
   }
 }
 
