@@ -1,10 +1,11 @@
-import 'dart:math';
-
 ///10 (Очень сложно). Реализуйте метод, который принимает коэффициенты системы линейных уравнений
 ///       (для любого числа неизвестных). Данный метод создаёт матрицу коэффициентов, приводит её к
 ///       треугольному виду и находит все неизвестные данной системы.
 ///https://matrixcalc.org/ru/slu.html
 ///Метод Гаусса — Жордана (метод полного исключения неизвестных Gauss Jordan Method)
+
+import 'dart:math';
+
 class SystemLinearEquations {
   final List<List<double>> _valueAB;
   final List<double> _valueX = [];
