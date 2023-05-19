@@ -3,10 +3,10 @@
 
 class ConvertBoolean<T, R> {
   final T _value;
-  late final String _bool;
-  late final int _int;
+  late final String _resultBinString;
+  late final int _resultInt;
 
-  get result => (_value is int)?_bool:_int;
+  get result => (_value is int)?_resultBinString:_resultInt;
 
   ConvertBoolean({required T value}) :
         assert((value is int || value is String)?true:false),
@@ -26,8 +26,8 @@ class ConvertBoolean<T, R> {
         buffer&0x01==1?result.add('1'):result.add('0');
         buffer>>=1;
       }while(buffer>0);
-      _bool = result.reversed.join();
-      _int = _value as int;
+      _resultBinString = result.reversed.join();
+      _resultInt = _value as int;
     } else if (_value is String){
       String buffer = _value as String;
       int result = 0;
@@ -36,14 +36,14 @@ class ConvertBoolean<T, R> {
           result = result ^ (1<<(buffer.length-i-1));
         }
       }
-      _int = result;
-      _bool = _value as String;
+      _resultInt = result;
+      _resultBinString = _value as String;
     }
   }
 
   @override
   String toString() {
-    return (_value is int)?_bool.toString():_int.toString();
+    return (_value is int)?_resultBinString.toString():_resultInt.toString();
   }
 }
 

@@ -8,7 +8,7 @@
 class WordIntToInt {
   static const List<String> _intWord = [
     'zero', 'one',   'two', 'three', 'four',
-    'five', 'six', 'seven', 'eight', 'nine','eight',
+    'five', 'six', 'seven', 'eight', 'nine',
   ];
   final List<String> _value;
   final List<int> _result = [];
